@@ -79,5 +79,5 @@ docker run -p 8080:8080 traveled-backend
 docker build -t traveled-frontend .
 docker run -p 4200:4200 traveled-frontend
 
-### 📜 License
+# 📜 License
 This project is open-source under the MIT License.
