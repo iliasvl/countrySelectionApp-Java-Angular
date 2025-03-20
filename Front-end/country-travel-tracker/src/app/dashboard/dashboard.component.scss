@@ -1,0 +1,109 @@
+.dashboard {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .countries-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .country-card {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .country-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .country-card img {
+    width: 40px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+  
+  .country-info {
+    text-align: left;
+  }
+  
+  .country-name {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .country-code {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .no-countries {
+    font-size: 16px;
+    color: #888;
+    margin: 20px 0;
+  }
+  
+  .summary {
+    background: #e3f2fd;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  .logout-button {
+    background: #ff5252;
+    color: white;
+  }
+  
+  button:not(.logout-button) {
+    background: #007bff;
+    color: white;
+  }
+  
+  .admin-section {
+    margin-top: 15px;
+  }
+  
+  .admin-button {
+    background: #ff9800;
+    color: white;
+  }
+  

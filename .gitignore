@@ -1,0 +1,30 @@
+# Node.js & Angular
+node_modules/
+dist/
+.angular/
+src/environments/environment*.ts
+
+# Java Spring Boot
+target/
+out/
+bin/
+.mvn/
+.gradle/
+build/
+
+# Logs
+*.log
+*.tmp
+*.swp
+
+# IDE & System Files
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Configuration & Secrets
+.env
+application.properties
+application.yml

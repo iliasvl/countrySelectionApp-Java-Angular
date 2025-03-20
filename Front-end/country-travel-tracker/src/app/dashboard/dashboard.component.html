@@ -1,0 +1,34 @@
+<div class="dashboard">
+  <h2>Your Travelled Countries</h2>
+
+  <div *ngIf="countries && countries.length > 0; else noCountries" class="countries-list">
+    <div class="country-card" *ngFor="let country of countries">
+      <img [src]="country.flagUrl" alt="{{ country.name }} flag">
+      <div class="country-info">
+        <span class="country-name">{{ country.name }}</span>
+        <span class="country-code">({{ country.code }})</span>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noCountries>
+    <p class="no-countries">You haven't added any countries yet.</p>
+  </ng-template>
+
+  <div class="summary">
+    <p><strong>Total Travelled:</strong> {{ totalTravelled }}</p>
+    <p><strong>Total Untravelled:</strong> {{ totalUntravelled }}</p>
+  </div>
+
+  <div class="button-group">
+    <button (click)="logout()" class="logout-button">Logout</button>
+    <button (click)="goToEditCountries()">Add New Countries</button>
+    <button (click)="goToRemoveCountries()">Remove Countries</button>
+  </div>
+
+  <!-- Show this only for admins -->
+  <div *ngIf="authService.isAdmin()" class="admin-section">
+    <button (click)="navigateToAdminControls()" class="admin-button">Admin Controls</button>
+  </div>
+</div>
+  

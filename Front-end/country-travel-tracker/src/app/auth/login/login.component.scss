@@ -1,0 +1,91 @@
+/* Center the login form */
+.login-container {
+    max-width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the form inputs */
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Login button */
+  .login-button {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .login-button:hover {
+    background: #0056b3;
+  }
+  
+  /* Disabled state */
+  .login-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Error message */
+  .error-message {
+    color: #dc3545;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  /* Register section */
+  .register-container {
+    margin-top: 15px;
+  }
+  
+  .register-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .register-button:hover {
+    background: #218838;
+  }
+  

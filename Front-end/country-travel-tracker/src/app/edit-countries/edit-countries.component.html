@@ -1,0 +1,21 @@
+ <div class="edit-countries">
+  <h2>Edit Your Traveled Countries</h2>
+
+  <div *ngIf="allCountries && allCountries.length; else noCountries" class="countries-container">
+    <div class="country-item" *ngFor="let country of allCountries">
+      <label class="country-label">
+        <input type="checkbox" [checked]="isCountrySelected(country.id)" (change)="toggleCountrySelection(country.id)">
+        <img [src]="country.flagUrl" alt="{{ country.name }} flag">
+        <span class="country-name">{{ country.name }} ({{ country.code }})</span>
+      </label>
+    </div>
+    <div class="button-group">
+      <button (click)="saveChanges()" class="save-button">Save Changes</button>
+      <button (click)="goToDashboard()" class="back-button">Back to Dashboard</button>
+    </div>
+  </div>
+
+  <ng-template #noCountries>
+    <p class="no-countries">No countries available to edit.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,153 @@
+/* Admin Controls Container */
+.admin-controls {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2, h3 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Form Styles */
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #444;
+  }
+  
+  input, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Apply Filters Button */
+  button[type="submit"] {
+    background: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button[type="submit"]:hover {
+    background: #0056b3;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background: #007bff;
+    color: white;
+  }
+  
+  td {
+    background: #f9f9f9;
+  }
+  
+  /* Action Buttons */
+  td button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 2px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  td button:hover {
+    background: #0056b3;
+  }
+  
+  td button:nth-child(1) { background: #ffc107; } /* Deactivate */
+  td button:nth-child(1):hover { background: #e0a800; }
+  
+  td button:nth-child(2) { background: #28a745; } /* Restore */
+  td button:nth-child(2):hover { background: #218838; }
+  
+  td button:nth-child(3) { background: #dc3545; } /* Delete */
+  td button:nth-child(3):hover { background: #c82333; }
+  
+  td button:nth-child(4) { background: #17a2b8; } /* View Details */
+  td button:nth-child(4):hover { background: #138496; }
+  
+  /* Pagination */
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pagination button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pagination button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    margin: 0 10px;
+    font-weight: bold;
+  }
+  
+  /* Back Button */
+  button.go-to-dashboard {
+    background: #6c757d;
+    margin-top: 20px;
+    padding: 10px 15px;
+  }
+  
+  button.go-to-dashboard:hover {
+    background: #5a6268;
+  }
+  

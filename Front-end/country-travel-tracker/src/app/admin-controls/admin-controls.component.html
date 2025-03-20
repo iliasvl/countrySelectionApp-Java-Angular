@@ -1,0 +1,48 @@
+<!-- Normal Traveler View -->
+<div *ngIf="!isAdmin">
+  <p>Welcome, Traveler! Here is your data...</p>
+</div>
+
+<!-- Admin View -->
+<div *ngIf="isAdmin">
+  <h2 class="description">Admin Controls</h2>
+  
+  <form #filterForm="ngForm" (ngSubmit)="loadFilteredPaginatedTravellers(filterForm.value, currentPage)">
+    <label for="uuid">UUID:</label>
+    <input id="uuid" name="uuid" placeholder="Enter UUID" ngModel />
+
+    <label for="active">Active:</label>
+    <select id="active" name="active" ngModel>
+      <option [value]="true">Active</option>
+      <option [value]="false">Inactive</option>
+    </select>
+
+    <button type="submit">Apply Filters</button>
+  </form>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let traveller of travellers">
+      <td>{{ traveller.id }}</td>
+      <td>{{ traveller.user.firstname }} {{ traveller.user.lastname }}</td>
+      <td>{{ traveller.isActive ? 'Active' : 'Inactive' }}</td>
+      <td>
+        <button (click)="deactivateTraveller(traveller.id)">Deactivate</button>
+        <button (click)="restoreTraveller(traveller.id)">Restore</button>
+        <button (click)="deleteTraveller(traveller.id)">Delete</button>
+        <button (click)="getTravellerDetails(traveller.id)">View Details</button>
+      </td>
+    </tr>    
+  </table>
+  <div class="pagination">
+    <button (click)="goToPreviousPage(filterForm.value)" [disabled]="currentPage <= 0"> Previous </button>
+    <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+    <button (click)="goToNextPage(filterForm.value)" [disabled]="currentPage + 1 >= totalPages"> Next </button>
+  </div>
+
+  <button (click)="goToDashboard()">Back to Dashboard</button>
+

@@ -1,0 +1,17 @@
+<div class="remove-countries">
+  <h2>Your Traveled Countries</h2>
+
+  <div *ngIf="travelledCountries.length > 0; else noCountries" class="countries-container">
+    <div class="country-item" *ngFor="let country of travelledCountries">
+      <img *ngIf="country.flagUrl" [src]="country.flagUrl" [alt]="country.name">
+      <span class="country-name">{{ country.name }} ({{ country.code }})</span>
+      <button (click)="removeCountry(country.id)" class="remove-button">Remove</button>
+    </div>
+  </div>
+
+  <ng-template #noCountries>
+    <p class="no-countries">You haven't added any traveled countries yet.</p>
+  </ng-template>
+
+  <button (click)="goToDashboard()" class="back-button">Back to Dashboard</button>
+</div>
