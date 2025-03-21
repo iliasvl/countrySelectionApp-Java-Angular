@@ -29,7 +29,12 @@ Role-based access (Admin vs. Traveler)
 
 
 ## 📌 Installation Instructions
-### ⚙️ 1. Backend Setup (Spring Boot)
+
+### 🗄️ 1. Database Setup
+Create the database schema in mysql with the name: countrytickerappdb, the username: userdb6 and the password: 12345 and the rest is automatically generated when you run the backend for the first two times. More in depth explanation follows.
+
+
+### ⚙️ 2. Backend Setup (Spring Boot)
 Clone the repository:
 git clone https://github.com/iliasvl/countrySelectionApp-Java-Angular.git
 cd countrySelectionApp-Java-Angular/Back-end/country-ticker-app/country-ticker-app
@@ -62,9 +67,9 @@ Run the Backend:
 The backend will start at http://localhost:8080.
 
 
-### 🎨 2. Frontend Setup (Angular)
+### 🎨 3. Frontend Setup (Angular)
 Navigate to the Frontend Directory:
-cd ../../Front-end/country-travel-tracker
+cd ./Front-end/country-travel-tracker
 
 
 Install Dependencies:
@@ -74,9 +79,6 @@ Run the Angular App:
 ng serve
 
 The frontend will start at http://localhost:4200.
-
-### 🗄️ Database Setup
-The database schema is automatically generated when you run the backend for the first time.
 
 1️⃣ Ensure MySQL is Running
 Make sure you have a MySQL database server running. You can use:
