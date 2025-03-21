@@ -9,18 +9,25 @@ Authentication: JWT-based authentication & authorization
 API Documentation: Swagger
 
 ## 🚀 Features
+
 ### ✅ User Features
 Register and log in securely
 View a dashboard displaying:
 The list of traveled countries (name, code, flag)
 Total traveled & untraveled countries
 Edit their traveled country list (add/remove countries)
+
 ###🛠️ Admin Features
 Manage all travelers (view traveler list)
 Perform all user functions
+
 ### 🔒 Security
 JWT-based authentication and authorization
-Role-based access (Admin vs. Traveler)
+Role-based access (Admin vs. Traveler) 
+
+
+
+
 ## 📌 Installation Instructions
 ### ⚙️ 1. Backend Setup (Spring Boot)
 Clone the repository:
@@ -35,6 +42,7 @@ spring.datasource.username=${MYSQL_USER:userdb6}
 spring.datasource.password=${MYSQL_PASSWORD:12345}
 spring.jpa.hibernate.ddl-auto=update
 
+##UNCOMMENT AT FIRST UPDATE, COMMENT AT CREATE
 #spring.sql.init.mode=always
 ##spring.sql.init.data-locations=classpath:sql/countries.sql
 spring.sql.init.encoding=UTF-8
@@ -49,9 +57,10 @@ spring.data.jpa.repositories.enabled=true
 
 
 Run the Backend:
-mvn spring-boot:run
+./gradlew bootRun
 
 The backend will start at http://localhost:8080.
+
 
 ### 🎨 2. Frontend Setup (Angular)
 Navigate to the Frontend Directory:
@@ -66,18 +75,32 @@ ng serve
 
 The frontend will start at http://localhost:4200.
 
+### 🗄️ Database Setup
+The database schema is automatically generated when you run the backend for the first time.
+
+1️⃣ Ensure MySQL is Running
+Make sure you have a MySQL database server running. You can use:
+Local MySQL installation
+
+2️⃣ Configure Database Connection
+Edit the backend properties in application-test.properties if needed:
+spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:countrytickerappdb}?serverTimezone=UTC
+spring.datasource.username=${MYSQL_USER:userdb6}
+spring.datasource.password=${MYSQL_PASSWORD:12345}
+spring.jpa.hibernate.ddl-auto=update
+✅ Tables will be created automatically on first startup!
+
+3️⃣ Add Country Data
+In order to populate the database with country data, uncomment these lines in application-test.properties and restart:
+spring.sql.init.mode=always
+spring.sql.init.data-locations=classpath:sql/countries.sql
+👉 Then comment these lines once more.
+
 ### 📊 API Documentation (Swagger)
 Once the backend is running, access the API documentation at:
 📄 http://localhost:8080/swagger-ui/index.html
 
-### 🐳 Docker (Optional)
-1️⃣ Build and Run the Backend Container:
-docker build -t traveled-backend .
-docker run -p 8080:8080 traveled-backend
 
-2️⃣ Build and Run the Frontend Container:
-docker build -t traveled-frontend .
-docker run -p 4200:4200 traveled-frontend
 
 # 📜 License
 This project is open-source under the MIT License.
