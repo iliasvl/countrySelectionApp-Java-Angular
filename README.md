@@ -1,3 +1,10 @@
+![Capture](https://github.com/user-attachments/assets/76879d4b-7270-48e5-a876-c055805eaf47)
+![Capture 99](https://github.com/user-attachments/assets/4d6f4eef-a60d-43f7-9b94-9818214e445d)
+![Capture 88](https://github.com/user-attachments/assets/8b98886a-7ef6-43e8-b19e-dc433cdb5784)
+![Capture 77](https://github.com/user-attachments/assets/b2b0b456-5075-47d8-a1db-68a46089d566)
+![Capture 66](https://github.com/user-attachments/assets/df711cde-6521-414e-be92-efe2f032ac62)
+![Capture55](https://github.com/user-attachments/assets/60972492-bb51-4d33-9f12-270960bcde44)
+
 # 🌍 Traveled Countries Tracker
 This is a Java Spring Boot and Angular application that allows users to track the countries they have traveled to. Users can register, log in, and manage their traveled country list, while admins have additional privileges to manage travelers.
 
@@ -5,6 +12,7 @@ This is a Java Spring Boot and Angular application that allows users to track th
 Backend: Java, Spring Boot, Spring Security, JPA, MySQL, JWT
 Frontend: Angular, TypeScript, Bootstrap
 Database: MySQL
+
 Authentication: JWT-based authentication & authorization
 API Documentation: Swagger
 
