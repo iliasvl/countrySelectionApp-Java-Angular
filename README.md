@@ -1,8 +1,9 @@
-![Capture 99](https://github.com/user-attachments/assets/94a7632e-0720-488e-8026-0737ba83d494)
-![Capture 88](https://github.com/user-attachments/assets/6eb291eb-7c74-4991-897e-0ad1bc131b90)
-![Capture 77](https://github.com/user-attachments/assets/090c69ee-8c4d-4273-bf90-acca5b41b8af)
-![Capture 66](https://github.com/user-attachments/assets/9e2a89c5-7aec-45f6-81e3-c86b938b8202)
 ![Capture55](https://github.com/user-attachments/assets/ee00e766-76e8-4ce4-bc94-0cefef187a6a)
+![Capture 66](https://github.com/user-attachments/assets/9e2a89c5-7aec-45f6-81e3-c86b938b8202)
+![Capture 77](https://github.com/user-attachments/assets/090c69ee-8c4d-4273-bf90-acca5b41b8af)
+![Capture 88](https://github.com/user-attachments/assets/6eb291eb-7c74-4991-897e-0ad1bc131b90)
+![Capture 99](https://github.com/user-attachments/assets/94a7632e-0720-488e-8026-0737ba83d494)
+
 
 # 🌍 Traveled Countries Tracker
 This is a Java Spring Boot and Angular application that allows users to track the countries they have traveled to. Users can register, log in, and manage their traveled country list, while admins have additional privileges to manage travelers.
