@@ -9,6 +9,12 @@ import gr.aueb.cf.country_ticker_app.dto.TravellerReadOnlyDTO;
 import gr.aueb.cf.country_ticker_app.model.User;
 import gr.aueb.cf.country_ticker_app.repository.UserRepository;
 import gr.aueb.cf.country_ticker_app.service.TravellerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -40,7 +46,6 @@ import java.util.List;
  * - GET /api/travellers/{travellerId}/total-travelled-countries
  * - GET /api/travellers/{travellerId}/total-untravelled-countries
  * - PATCH /api/travellers/{id}/deactivate
- *
  * <b>Pre-authorization:</b>
  * Certain endpoints require the user to have specific roles or authorities.
  *
@@ -49,6 +54,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@Tag(name = "Travellers", description = "Endpoints for managing travellers")
 public class TravellerRestController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TravellerRestController.class);
@@ -71,6 +77,14 @@ public class TravellerRestController {
      *
      * @return a {@link ResponseEntity} containing the list of traveller DTOs
      */
+    @Operation(
+            summary = "Retrieve all travellers",
+            description = "Returns a list of all travellers in the system",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "List of travellers returned"),
+                    @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+            }
+    )
     @GetMapping("/travellers")
     public ResponseEntity<List<TravellerReadOnlyDTO>> getAllTravellers() {
         List<TravellerReadOnlyDTO> allTravellers = travellerService.getAllTravellers();
@@ -89,6 +103,14 @@ public class TravellerRestController {
      * @throws AppObjectAlreadyExists           if the traveller already exists
      * @throws AppServerException               if an internal server error occurs
      */
+    @Operation(summary = "Register a new traveler", description = "Creates a new traveler account and returns the saved traveler details.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Traveler created successfully",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = TravellerReadOnlyDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid traveler data provided"),
+            @ApiResponse(responseCode = "409", description = "Traveler already exists"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @PostMapping("/travellers/save")
     public ResponseEntity<TravellerReadOnlyDTO> saveTraveller(
             @Valid @RequestBody TravellerInsertDTO travellerInsertDTO,
@@ -113,6 +135,12 @@ public class TravellerRestController {
      * @param travellerId the ID of the traveller to retrieve
      * @return a {@link ResponseEntity} containing the traveller DTO
      */
+    @Operation(summary = "Get traveler by ID", description = "Retrieves a traveler based on their ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Traveler found",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = TravellerReadOnlyDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Traveler not found")
+    })
     @GetMapping("/travellers/{travellerId}")
     public ResponseEntity<TravellerReadOnlyDTO> getTraveller(@PathVariable Long travellerId) {
         TravellerReadOnlyDTO travellerDTO = travellerService.getTraveller(travellerId);
@@ -132,6 +160,13 @@ public class TravellerRestController {
      * @return a {@link ResponseEntity} containing the updated {@link TravellerReadOnlyDTO} or an error response
      * @throws AppObjectNotFoundException if the user or traveller is not found
      */
+    @Operation(summary = "Add countries to traveler", description = "Allows a traveler to add countries they have visited.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Countries added successfully",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = TravellerReadOnlyDTO.class))),
+            @ApiResponse(responseCode = "403", description = "Unauthorized to modify another traveler's list"),
+            @ApiResponse(responseCode = "404", description = "Traveler not found")
+    })
     @PreAuthorize("hasRole('TRAVELLER') or hasRole('ADMIN')")
     @PostMapping("travellers/{travellerId}/add")
     public ResponseEntity<?> addCountriesToTraveller(
@@ -173,6 +208,11 @@ public class TravellerRestController {
      * @return a {@link ResponseEntity} containing a success message
      * @throws AppObjectNotFoundException if the traveller or country is not found
      */
+    @Operation(summary = "Remove a country from traveler", description = "Removes a specific country from a traveler's visited list.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Country removed successfully"),
+            @ApiResponse(responseCode = "404", description = "Traveler or country not found")
+    })
     @PreAuthorize("hasRole('TRAVELLER') or hasRole('ADMIN')")
     @PatchMapping("/travellers/{travellerId}/remove-country/{countryId}")
     public ResponseEntity<String> removeCountryFromTraveller(
@@ -209,6 +249,12 @@ public class TravellerRestController {
      * @throws AppObjectNotFoundException    if any relevant objects are not found
      * @throws AppObjectNotAuthorizedException if the user is not authorized to perform this action
      */
+    @Operation(summary = "Get paginated travelers", description = "Retrieves a list of travelers with pagination and filtering options.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved paginated list",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Paginated.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @PostMapping("/travellers/all/paginated")
     public ResponseEntity<Paginated<TravellerReadOnlyDTO>> getTravellersFilteredPaginated(@Nullable @RequestBody TravellerFilters filters,
                                                                                         Principal principal)
@@ -228,6 +274,10 @@ public class TravellerRestController {
      * @param travellerId the ID of the traveller
      * @return a {@link ResponseEntity} containing the total number of travelled countries
      */
+    @Operation(summary = "Get total traveled countries", description = "Returns the number of countries a traveler has visited.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Total traveled countries retrieved successfully")
+    })
     @GetMapping("/travellers/{travellerId}/total-travelled-countries")
     public ResponseEntity<Long> getTotalTraveledCountries(@PathVariable Long travellerId) {
         long totalTraveledCountries = travellerService.getTotalTraveledCountries(travellerId);
@@ -241,6 +291,10 @@ public class TravellerRestController {
      * @param travellerId the ID of the traveller
      * @return a {@link ResponseEntity} containing the total number of untravelled countries
      */
+    @Operation(summary = "Get total untraveled countries", description = "Returns the number of countries a traveler has not visited yet.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Total untraveled countries retrieved successfully")
+    })
     @GetMapping("/travellers/{travellerId}/total-untravelled-countries")
     public ResponseEntity<Long> getTotalUntraveledCountries(@PathVariable Long travellerId) {
         long totalUntraveledCountries = travellerService.getTotalUntraveledCountries(travellerId);
@@ -259,6 +313,11 @@ public class TravellerRestController {
      * @return a {@link ResponseEntity} containing a success message
      * @throws AppObjectNotFoundException if the traveller is not found
      */
+    @Operation(summary = "Deactivate traveler", description = "Soft deletes a traveler (deactivates them) - Admin only.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Traveler deactivated successfully"),
+            @ApiResponse(responseCode = "404", description = "Traveler not found")
+    })
     @PatchMapping("/travellers/{id}/deactivate")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> softDeleteTraveller(@PathVariable Long id) throws AppObjectNotFoundException {
@@ -278,6 +337,11 @@ public class TravellerRestController {
      * @return a {@link ResponseEntity} containing a success message
      * @throws AppObjectNotFoundException if the traveller is not found
      */
+    @Operation(summary = "Restore traveler", description = "Restores a soft-deleted traveler - Admin only.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Traveler restored successfully"),
+            @ApiResponse(responseCode = "404", description = "Traveler not found")
+    })
     @PatchMapping("/travellers/{id}/restore")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<String> restoreTraveller(@PathVariable Long id) throws AppObjectNotFoundException{
@@ -296,6 +360,15 @@ public class TravellerRestController {
      * @param travellerId the ID of the traveller to delete
      * @return a {@link ResponseEntity} with the appropriate status based on the outcome
      */
+    @Operation(
+            summary = "Delete a traveller",
+            description = "Deletes a traveller based on their ID. This method is implemented for a hard delete but is not used as soft delete is preferred."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Traveller deleted successfully (No Content)"),
+            @ApiResponse(responseCode = "404", description = "Traveller not found"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")
+    })
     @DeleteMapping("/travellers/{travellerId}/delete")   // No need as we have implemented the soft delete but the method is there in case it is needed.
     @PreAuthorize("hasRole('ADMIN')") // Ensure only ADMIN can delete travelers
     public ResponseEntity<Void> deleteTraveller(@PathVariable Long travellerId) {

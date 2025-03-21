@@ -4,6 +4,8 @@ import gr.aueb.cf.country_ticker_app.authentication.AuthenticationService;
 import gr.aueb.cf.country_ticker_app.core.exceptions.AppObjectNotAuthorizedException;
 import gr.aueb.cf.country_ticker_app.dto.AuthenticationRequestDTO;
 import gr.aueb.cf.country_ticker_app.dto.AuthenticationResponseDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 import org.slf4j.Logger;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authentication", description = "Endpoints for user authentication")
 public class AuthRestController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthRestController.class);
@@ -43,6 +46,7 @@ public class AuthRestController {
      * @throws AppObjectNotAuthorizedException if the user is not authorized
      */
     @PostMapping("/authenticate")
+    @Operation(summary = "User login", description = "Authenticates a user and returns a JWT token")
     public ResponseEntity<AuthenticationResponseDTO> authenticate(@RequestBody AuthenticationRequestDTO authenticationRequestDTO)
                 throws AppObjectNotAuthorizedException {
         AuthenticationResponseDTO authenticationResponseDTO = authenticationService.authenticate(authenticationRequestDTO);

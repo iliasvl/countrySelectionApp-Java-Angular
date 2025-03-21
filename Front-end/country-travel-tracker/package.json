@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:country-travel-tracker": "node dist/country-travel-tracker/server/server.mjs"
+    "build:ssr": "ng build --configuration production && ng run country-travel-tracker:server:production",
+  "serve:ssr": "node dist/country-travel-tracker/server/main.js"
   },
   "private": true,
   "dependencies": {
