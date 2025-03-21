@@ -54,7 +54,7 @@ spring.sql.init.encoding=UTF-8
 spring.sql.init.platform=mysql
 
 
-Edit application.properties in src/main/resources:
+Create application.properties in src/main/resources:
 spring.profiles.active=test
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.properties.hibernate.globally_quoted_identifiers=true
